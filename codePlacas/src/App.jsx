@@ -1,9 +1,35 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import Loadvideo from "./pages/LoadVideo.jsx";
+import Search from "./pages/Search.jsx";
 
 export default function App() {
   return (
-    <div className="min-h-screen max-h-full bg-zinc-950">
-      <div className="font-bold text-white">Testing</div>
-    </div>
+    <Router>
+      <div className="min-h-screen max-h-full bg-zinc-950 text-white">
+        <nav className="p-4 bg-zinc-800">
+          <ul className="flex space-x-4">
+            <li>
+              <Link to="/" className="hover:underline">Inicio</Link>
+            </li>
+            <li>
+              <Link to="/loadvideo" className="hover:underline">Cargar Video</Link>
+            </li>
+            <li>
+              <Link to="/search" className="hover:underline">Buscar</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="p-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/loadvideo" element={<Loadvideo />} />
+            <Route path="/search" element={<Search />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
