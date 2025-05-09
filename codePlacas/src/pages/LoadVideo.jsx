@@ -40,7 +40,7 @@ export default function LoadVideo() {
           ".mp4",
           "_etiquetado_fixed.mp4"
         );
-        const videoUrl = `http://127.0.0.1:5000/videos/${videoName}`;
+        const videoUrl = `http://127.0.0.1:5001/videos/${videoName}`;
         console.log("URL del video procesado:", videoUrl);
 
         // Establecer la URL del video procesado

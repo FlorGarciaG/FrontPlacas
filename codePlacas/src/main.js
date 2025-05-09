@@ -30,11 +30,11 @@ const createWindow = () => {
         ...details.responseHeaders,
         "Content-Security-Policy": [
           "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; " +
-            "connect-src 'self' http://127.0.0.1:5000 http://127.0.0.1:5001 ws://127.0.0.1:5001 ws://localhost:3000 http://localhost:3000; " +
+            "connect-src 'self' http://127.0.0.1:5001 ws://127.0.0.1:5001 http://localhost:3000 ws://localhost:3000; " +
+            "img-src    'self' data: http://127.0.0.1:5001; " +
+            "media-src  'self' data: blob: http://127.0.0.1:5001; " +
             "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
-            "img-src 'self' data:; " +
-            "style-src 'self' 'unsafe-inline'; " +
-            "media-src 'self' http://127.0.0.1:5000 http://127.0.0.1:5001 data: blob:;",
+            "style-src  'self' 'unsafe-inline';",
         ],
       },
     });
