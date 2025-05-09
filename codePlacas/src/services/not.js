@@ -11,17 +11,6 @@ export const buscarPlaca = async (placa) => {
     return response.data;
   } catch (error) {
     console.error('Error al buscar la placa:', error);
-    
-    // Manejo específico de errores
-    if (error.response) {
-      if (error.response.status === 404) {
-        throw new Error('Placa no encontrada');
-      } else {
-        throw new Error('Error en el servidor al buscar la placa');
-      }
-    } else {
-      throw new Error('Error de conexión al buscar la placa');
-    }
   }
 };
 

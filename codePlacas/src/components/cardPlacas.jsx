@@ -4,6 +4,7 @@ import pruebaImg from "../assets/prueba.jpeg";
 import { Report } from "@mui/icons-material";
 import { Error } from "@mui/icons-material";
 import { buscarPlaca } from "../services/not";
+import { VerifiedUser } from "@mui/icons-material";
 
 export default function CardPlacas({ placa }) {
   const [estadoPlaca, setEstadoPlaca] = useState(null);
@@ -34,7 +35,6 @@ export default function CardPlacas({ placa }) {
         setEstadoPlaca(resultado);
       } catch (err) {
         console.error("Error al consultar estado de la placa:", err);
-        setError("No se pudo verificar el estado de la placa");
         setEstadoPlaca(null);
       } finally {
         setCargando(false);
@@ -104,13 +104,17 @@ export default function CardPlacas({ placa }) {
             />
           )}
 
-          {!cargando && !error && estadoPlaca === null && (
+          {!cargando && !error && (!estadoPlaca || (!estadoPlaca.robado && !estadoPlaca.tiene_multas)) && (
             <Chip
               label="Sin registros"
               sx={{
                 backgroundColor: "gray",
                 color: "white",
+                "& .MuiChip-icon": {
+                  color: "white",
+                },
               }}
+              icon={<VerifiedUser />}
             />
           )}
         </div>
