@@ -31,7 +31,9 @@ export default function LoadVideo() {
         console.log("Respuesta del backend:", response.data);
 
         // Establecer las placas detectadas
-        setDetectedPlates(response.data.placas_detectadas || []);
+        setDetectedPlates(
+          (response.data.placas_detectadas || []).map((placa) => placa.texto)
+        );
 
         // Construir la URL del video procesado
         const videoName = response.data.video_guardado.replace(
