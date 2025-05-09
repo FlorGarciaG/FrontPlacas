@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  html, body, #root {
+    @apply h-full w-full overflow-hidden;
+  }
+
+  * {
+    @apply box-border m-0 p-0;
+  }
+
+  body {
+    @apply bg-stone-100 font-sans;
+  }
+}
