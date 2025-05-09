@@ -5,16 +5,18 @@ import { Report } from "@mui/icons-material";
 import { Error } from "@mui/icons-material";
 
 export default function CardPlacas({ placa }) {
-  const fecha = new Date(placa.fecha_deteccion);
-  const fechaFormateada = new Intl.DateTimeFormat("es-MX", {
-    timeZone: "America/Mexico_City",
-    dateStyle: "short",
-  }).format(fecha);
+  const fecha = placa.fecha_deteccion ? new Date(placa.fecha_deteccion) : null;
+  const fechaFormateada = fecha
+    ? new Intl.DateTimeFormat("es-MX", {
+        dateStyle: "short",
+      }).format(fecha)
+    : "Fecha no disponible";
 
-  const horaFormateada = new Intl.DateTimeFormat("es-MX", {
-    timeZone: "America/Mexico_City",
-    timeStyle: "medium",
-  }).format(fecha);
+  const horaFormateada = fecha
+    ? new Intl.DateTimeFormat("es-MX", {
+        timeStyle: "medium",
+      }).format(fecha)
+    : "Hora no disponible";
 
   return (
     <div className="card rounded-lg shadow-md bg-white outline outline-2 outline-[#e0c48c]">
@@ -30,7 +32,7 @@ export default function CardPlacas({ placa }) {
           />
         </div>{" "}
         <p>
-          <strong>Estado:</strong> Puebla
+          <strong>Estado:</strong> {placa.estado}
         </p>
         {/* <p><strong>Tipo:</strong> Particular</p> */}
         <p>
