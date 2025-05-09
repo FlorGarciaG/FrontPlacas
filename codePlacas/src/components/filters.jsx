@@ -19,16 +19,16 @@ function Box({ children }) {
   return <div className={`flex flex-col w-full`}>{children}</div>;
 }
 
-export default function Filters() {
+export default function Filters({ onFilter }) {
   const [open, setOpen] = React.useState(false);
   const [formValues, setFormValues] = React.useState({
     placas: "",
     estado: null,
-    tipoPlacas: null,
+    // tipoPlacas: null,
     fecha_inicio: "",
     fecha_fin: "",
-    stolen: false,
-    ticket: false,
+    // stolen: false,
+    // ticket: false,
   });
 
   const handleClick = () => {
@@ -49,21 +49,20 @@ export default function Filters() {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleReset = () => {
-    setFormValues({
-      placas: "",
-      estado: null,
-      tipoPlacas: null,
-      fecha_inicio: "",
-      fecha_fin: "",
-      stolen: false,
-      ticket: false,
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Filtros:", formValues);
+    onFilter(formValues); 
+  };
+
+  const handleReset = () => {
+    const resetValues = {
+      placas: "",
+      estado: null,
+      fecha_inicio: "",
+      fecha_fin: "",
+    };
+    setFormValues(resetValues);
+    onFilter(resetValues); 
   };
 
   // Falsos datos de ejemplo
@@ -72,11 +71,11 @@ export default function Filters() {
     { label: "Puebla", _id: 2 },
   ];
 
-  const tiposPlacas = [
-    { label: "Particular", _id: 1 },
-    { label: "Gubernamental", _id: 2 },
-    { label: "Comercial", _id: 3 },
-  ];
+  // const tiposPlacas = [
+  //   { label: "Particular", _id: 1 },
+  //   { label: "Gubernamental", _id: 2 },
+  //   { label: "Comercial", _id: 3 },
+  // ];
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -112,7 +111,7 @@ export default function Filters() {
                 )}
               />
             </Box>
-            <Box w="md">
+            {/* <Box w="md">
               <Autocomplete
                 options={tiposPlacas}
                 getOptionLabel={(option) => option.label}
@@ -124,7 +123,7 @@ export default function Filters() {
                   <TextField {...params} label="Tipo de Placa" />
                 )}
               />
-            </Box>
+            </Box> */}
             <Box w="md">
               <TextField
                 label="Fecha Inicio"
@@ -149,7 +148,7 @@ export default function Filters() {
               />
             </Box>
 
-            <Box w="md">
+            {/* <Box w="md">
               <FormGroup row>
                 <FormControlLabel
                   control={
@@ -190,7 +189,7 @@ export default function Filters() {
                   label="Con multa"
                 />
               </FormGroup>
-            </Box>
+            </Box> */}
 
             <div className="flex flex-row space-x-4">
               <Button
