@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, NavLink } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate, NavLink } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Loadvideo from "./pages/LoadVideo.jsx";
 import Search from "./pages/Search.jsx";

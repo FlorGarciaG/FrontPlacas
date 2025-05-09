@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
 const path = require('node:path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -20,6 +20,22 @@ const createWindow = () => {
       nodeIntegration: false,
     },
     autoHideMenuBar: true,
+  });
+
+  // Configurar CSP para permitir conexiones a la API y al servidor de desarrollo
+  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': [
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; " +
+          "connect-src 'self' http://127.0.0.1:5000 ws://localhost:3000 http://localhost:3000; " +
+          "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+          "img-src 'self' data:; " +
+          "style-src 'self' 'unsafe-inline';"
+        ]
+      }
+    });
   });
 
   // and load the index.html of the app.
