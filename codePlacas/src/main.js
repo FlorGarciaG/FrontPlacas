@@ -29,12 +29,12 @@ const createWindow = () => {
       responseHeaders: {
         ...details.responseHeaders,
         "Content-Security-Policy": [
-          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; " +
-            "connect-src 'self' http://127.0.0.1:5001 ws://127.0.0.1:5001 http://localhost:3000 ws://localhost:3000; " +
-            "img-src    'self' data: http://127.0.0.1:5001; " +
-            "media-src  'self' data: blob: http://127.0.0.1:5001; " +
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; " +
+            "connect-src *; " + // Para desarrollo puedes permitir todos los orígenes
             "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
-            "style-src  'self' 'unsafe-inline';",
+            "img-src 'self' data: blob:; " +
+            "style-src 'self' 'unsafe-inline'; " +
+            "media-src *;",
         ],
       },
     });

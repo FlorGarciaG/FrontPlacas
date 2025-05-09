@@ -17,8 +17,14 @@ export default function Search() {
     const fetchPlacas = async () => {
       try {
         const data = await getPlacas();
-        setPlacas(data.placas);
-        setFilteredPlacas(data.placas); // mostrar todo por defecto
+        const placasConImagenes = data.placas
+          .filter((placa) => placa.tipo !== "video") // Filtrar los que tienen "Video" en el campo "tipo"
+          .map((placa) => ({
+            ...placa,
+            imagenUrl: placa.url_imagen || null, // Agregar URL de imagen si está disponible
+          }));
+        setPlacas(placasConImagenes);
+        setFilteredPlacas(placasConImagenes); // mostrar todo por defecto
       } catch (error) {
         console.error("Error al obtener las placas:", error);
       }
