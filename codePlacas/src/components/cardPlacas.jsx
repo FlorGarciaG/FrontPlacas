@@ -5,7 +5,7 @@ import { Report } from "@mui/icons-material";
 import { Error } from "@mui/icons-material";
 
 
-export default function CardPlacas({ data }) {
+export default function CardPlacas({ placa }) {
   return (
     <div className="card rounded-lg shadow-md bg-white outline outline-2 outline-[#e0c48c]">
           <div className="card-body m-4">

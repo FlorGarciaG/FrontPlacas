@@ -9,7 +9,7 @@ export default function App() {
   
   return (
     <Router>
-      <div className="bg-stone-100 min-h-screen p-4">
+      <div className="bg-stone-100 p-4">
         <div className="bg-[#f5e8c9] border-2 border-[#e0c48c] rounded-lg shadow-lg overflow-hidden">
           <nav className="px-4 pt-2 bg-[#f5e8c9]">
             <ul className="flex">
