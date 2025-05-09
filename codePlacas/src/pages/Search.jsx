@@ -25,7 +25,7 @@ export default function Search() {
         <div className="mb-4 bg-white outline outline-1 outline-[#e0c48c] rounded-lg shadow-md">
           <Filters />
         </div>
-        <div className="flex flex-wrap py-2 justify-center items-center gap-4 ">
+        <div className="flex flex-wrap py-2 gap-3 justify-center items-center ">
           {placas.length > 0 ? (
             placas.map((placa) => <CardPlacas key={placa._id} placa={placa} />)
           ) : (
