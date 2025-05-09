@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import api from "../services/api"; // Importar la configuración de Axios
 
 export default function LoadVideo() {
-  const [videoSrc, setVideoSrc] = useState("");
+  const [videoSrc, setVideoSrc] = useState(""); // URL del video procesado
   const [detectedPlates, setDetectedPlates] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -29,8 +29,20 @@ export default function LoadVideo() {
       try {
         const response = await api.post("/detect/video", formData);
         console.log("Respuesta del backend:", response.data);
+
+        // Establecer las placas detectadas
         setDetectedPlates(response.data.placas_detectadas || []);
-        setVideoSrc(URL.createObjectURL(file));
+
+        // Construir la URL del video procesado
+        const videoName = response.data.video_guardado.replace(
+          ".mp4",
+          "_etiquetado_fixed.mp4"
+        );
+        const videoUrl = `http://127.0.0.1:5000/videos/${videoName}`;
+        console.log("URL del video procesado:", videoUrl);
+
+        // Establecer la URL del video procesado
+        setVideoSrc(videoUrl);
       } catch (error) {
         console.error("Error al cargar el video:", error);
         alert(
@@ -43,6 +55,7 @@ export default function LoadVideo() {
       console.error("No se seleccionó ningún archivo.");
     }
   };
+
   return (
     <div className="flex h-screen bg-[#fff5e0] text-gray-800">
       {/* Sección de video */}
@@ -75,18 +88,22 @@ export default function LoadVideo() {
               <p className="text-gray-500 mb-5">
                 Sube un video para detectar placas vehiculares
               </p>
-              <label className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg transition shadow-sm">
-                Seleccionar video
+              <label
+                className={`cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg transition shadow-sm ${
+                  isUploading ? "cursor-not-allowed opacity-50" : ""
+                }`}
+              >
+                {isUploading
+                  ? "Subiendo y procesando el video..."
+                  : "Seleccionar video"}
                 <input
                   type="file"
                   accept="video/*"
                   onChange={handleFileChange}
                   className="hidden"
+                  disabled={isUploading}
                 />
               </label>
-              {isUploading && (
-                <p className="text-blue-500 mt-4">Cargando video...</p>
-              )}
             </div>
           )}
         </div>
