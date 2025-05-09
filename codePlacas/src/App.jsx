@@ -9,9 +9,9 @@ export default function App() {
   
   return (
     <Router>
-      <div className="bg-stone-100 p-4">
-        <div className="bg-[#f5e8c9] border-2 border-[#e0c48c] rounded-lg shadow-lg overflow-hidden">
-          <nav className="px-4 pt-2 bg-[#f5e8c9]">
+      <div className="bg-stone-100 h-screen w-screen  flex flex-col overflow-y-auto">
+        <div className="bg-[#f5e8c9] border-2 border-[#e0c48c] rounded-lg shadow-lg flex flex-col flex-grow m-2">
+          <nav className="px-4 pt-2 bg-[#f5e8c9] flex-shrink-0">
             <ul className="flex">
               <li className="mr-1">
                 <NavLink 
@@ -73,7 +73,7 @@ export default function App() {
             </ul>
           </nav>
 
-          <div className="p-6 bg-[#fff5e0] border-t-2 border-[#d4b772] min-h-[calc(100vh-120px)]">
+          <div className="p-6 bg-[#fff5e0] border-t-2 border-[#d4b772] h-full  ">
             <Routes>
               <Route path="*" element={<Navigate to="/" />} />
               <Route path="/" element={<Home />} />

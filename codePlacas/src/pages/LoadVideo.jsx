@@ -57,7 +57,7 @@ export default function LoadVideo() {
   };
 
   return (
-    <div className="flex h-screen bg-[#fff5e0] text-gray-800">
+    <div className="flex h-full bg-[#fff5e0] text-gray-800">
       {/* Sección de video */}
       <div className="w-[60%] p-6">
         <div className="h-full bg-white rounded-xl shadow-md overflow-hidden flex flex-col">

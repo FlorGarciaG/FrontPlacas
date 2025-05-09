@@ -20,16 +20,18 @@ export default function Search() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen ">
-      <div className="mb-4 bg-white outline outline-1 outline-[#e0c48c] rounded-lg shadow-md">
-        <Filters />
-      </div>
-      <div className="flex flex-wrap py-2 justify-center items-center gap-4 overflow-y-auto h-full">
-        {placas.length > 0 ? (
-          placas.map((placa) => <CardPlacas key={placa._id} placa={placa} />)
-        ) : (
-          <p>No se encontraron placas</p>
-        )}
+    <div className="flex flex-col h-full">
+      <div className="h-screen overflow-y-auto p-2">
+        <div className="mb-4 bg-white outline outline-1 outline-[#e0c48c] rounded-lg shadow-md">
+          <Filters />
+        </div>
+        <div className="flex flex-wrap py-2 justify-center items-center gap-4 ">
+          {placas.length > 0 ? (
+            placas.map((placa) => <CardPlacas key={placa._id} placa={placa} />)
+          ) : (
+            <p>No se encontraron placas</p>
+          )}
+        </div>
       </div>
     </div>
   );
